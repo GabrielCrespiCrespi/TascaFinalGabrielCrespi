@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="amplada=dispositiu-amplada, escala inicial=1.0">
+    <title>Crear Tasca</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="contenidor">
+        <nav class="menu-lateral">
+            <ul>
+                <li><a href="index.html">Llistat d'Activitats</a></li>
+                <li><a href="crear-tasca.html">Crear Tasca</a></li>
+                <li><a href="categories.html">Gestió de Categories</a></li>
+            </ul>
+        </nav>
+        <main class="contingut-principal">
+            <h1>Crear Nova Tasca</h1>
+            <div class="formulari-contenidor">
+                <form id="form-tasca">
+                    <label for="titol">Títol:</label>
+                    <input type="text" id="titol" name="titol" required>
+
+                    <label for="descripcio">Descripció:</label>
+                    <input type="text" id="descripcio" name="descripcio" required>
+
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+
+                    <label for="prioritat">Prioritat:</label>
+                    <select id="prioritat" name="prioritat" required>
+                        <option value="Alta">Alta</option>
+                        <option value="Mitjana">Mitjana</option>
+                        <option value="Baixa">Baixa</option>
+                    </select>
+
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Carregant...</option>
+                    </select>
+
+                    <button type="submit">Crear Tasca</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/form-tasca.js"></script>
+</body>
+</html>

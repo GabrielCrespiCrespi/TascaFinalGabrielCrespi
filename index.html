@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="amplada=dispositiu-amplada, escala inicial=1.0">
+    <title>Llistat d'Activitats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="contenidor">
+        <nav class="menu-lateral">
+            <ul>
+                <li><a href="index.html">Llistat d'Activitats</a></li>
+                <li><a href="crear-tasca.html">Crear Tasca</a></li>
+                <li><a href="categories.html">Gestió de Categories</a></li>
+            </ul>
+        </nav>
+        <main class="contingut-principal">
+            <h1>Llistat d'Activitats</h1>
+            <div class="accions">
+                <a href="crear-tasca.html" class="boton-crear-tasca">Crear Nova Tasca</a>
+                <input type="text" id="cercar-tasques" placeholder="Cercar tasques..." oninput="cercarTasques(this.value)">
+                <label for="pujar-json" class="boton-pujar">Pujar</label>
+                <input type="file" id="pujar-json" accept=".json" onchange="pujarTasques(event)" style="display: none;">
+            </div>
+            <h2>Tasques pendents</h2>
+            <div id="llistat-activitats"></div>
+            <h2>Tasques acabades</h2>
+            <div id="llistat-activitats-acabades"></div>
+            <canvas id="grafic-tasques"></canvas>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/grafics.js"></script>
+</body>
+</html>

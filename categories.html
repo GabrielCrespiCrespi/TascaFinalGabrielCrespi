@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="amplada=dispositiu-amplada, escala inicial=1.0">
+    <title>Gestió de Categories</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="contenidor">
+        <nav class="menu-lateral">
+            <ul>
+                <li><a href="index.html">Llistat d'Activitats</a></li>
+                <li><a href="crear-tasca.html">Crear Tasca</a></li>
+                <li><a href="categories.html">Gestió de Categories</a></li>
+            </ul>
+        </nav>
+        <main class="contingut-principal">
+            <h1>Gestió de Categories</h1>
+            <div class="formulari-contenidor">
+                <form id="formulari-categoria" onsubmit="crearCategoria(event)">
+                    <label for="nom-categoria">Nova categoria:</label>
+                    <input type="text" id="nom-categoria" name="nom" required>
+                    <label for="color-categoria">Color de la categoria:</label>
+                    <input type="color" id="color-categoria" name="color" value="#ffffff" required>
+                    <button type="submit">Afegir Categoria</button>
+                </form>
+            </div>
+            <h2>Llista de Categories</h2>
+            <div id="llistat-categories"></div>
+        </main>
+    </div>
+    <script src="js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', mostrarCategories);
+        function crearCategoria(event) {
+            event.preventDefault();
+            const form = event.target;
+            const nom = form.nom.value;
+            const color = form.color.value;
+            const categories = JSON.parse(localStorage.getItem('categories')) || [];
+            if (categories.some(c => c.nom === nom)) return alert('Aquesta categoria ja existeix!');
+            categories.push({ nom, color });
+            localStorage.setItem('categories', JSON.stringify(categories));
+            alert('Categoria creada!');
+            form.reset();
+            mostrarCategories();
+        }
+        function mostrarCategories() {
+            const categories = JSON.parse(localStorage.getItem('categories')) || [];
+            const llistat = document.getElementById('llistat-categories');
+            llistat.innerHTML = categories.length ? categories.map((cat, i) => `
+                <div class="categoria" style="background-color:${cat.color}">
+                    <span>${cat.nom}</span>
+                    <button class="eliminar" onclick="eliminarCategoria(${i})">Eliminar</button>
+                </div>
+            `).join('') : '<p>No hi ha categories creades.</p>';
+        }
+        window.eliminarCategoria = function(index) {
+            const categories = JSON.parse(localStorage.getItem('categories')) || [];
+            categories.splice(index, 1);
+            localStorage.setItem('categories', JSON.stringify(categories));
+            mostrarCategories();
+        };
+    </script>
+</body>
+</html>
